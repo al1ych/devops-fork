@@ -1,3 +1,4 @@
+
 """
 Author: Timur Nugaev, BS19-SD01
 This module is the main module of the server
@@ -19,7 +20,6 @@ def get_home_page():
     """
     endpoint that returns a rendered html template with
     dynamic data (time) in the timezone of Moscow.
-
     :return: rendered template for home page
     """
     return render_template('index.html', time_msk=get_time("Europe/Moscow"))
@@ -30,5 +30,3 @@ if __name__ == '__main__':
         config = yaml.load(f, Loader=yaml.FullLoader)
     HOST = config["flask"]["host"]
     PORT = config["flask"]["port"]  # pylint: disable=invalid-name
-
-    app.run(host=HOST, port=PORT, debug=False)

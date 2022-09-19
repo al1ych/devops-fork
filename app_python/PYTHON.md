@@ -18,6 +18,7 @@
 12. Debug mode while developing. Debug mode in Flask watches and restarts server on file changes
     automatically which increases productivity
 13. SOLID, DRY, KISS (ideally)
+14. Tests
 
 Also, I found
 [this](https://auth0.com/blog/best-practices-for-flask-api-development/)
@@ -33,7 +34,49 @@ building and shipping production-grade APIs with Python:
 - Folder structure (I do not fully agree on this with the author, so I used some design from there and came up with
   the optimal architecture so that the project could scale up and not be too complex)
 - Build your documentation from the code
-- Testing (we will do it later in the course but i added a folder in advance : `test`)
+- Testing
+
+## Testing
+
+### Unit tests for this application:
+
+I chose Pytest for testing as it's more popular and easier to use than unittest.
+
+Run 'python3 -m pytest tests/' to start the tests.
+
+- gets current time for Moscow timezone
+
+This test checks that if someone changes the algorithm of obtaining the current time,
+the implementation will give the same result as the implementation we have in the first iteration
+(e.g. the correct result). It is checking that we obtain the current time for Moscow timezone with en-US with
+the locale parameter set to en-US.
+
+- gets current time for Chicago timezone
+
+We need this test because in the business requirements it's stated that our incredibly popular app will 
+extend outside the Russian market into the US market, so we need to be ready to have support for the US time,
+specifically, Chicago timezone. So we have to always check (with a test) that 
+we're getting correct results for Chicago timezone as well.
+
+- gets correct home route
+
+As we currently have only one route (home, '/'), we have only one test for one endpoint.
+This test checks if we successfully retrieved the home page. 
+
+
+### Best practices applied:
+
+1. Test-driven development (test for Chicago timezone, ru-RU locale)
+2. Write Readable, Simple Tests.
+3. Write Deterministic Tests.
+4. Test One Scenario Per Test.
+5. Unit Tests Should Be Automated.
+6. Write Isolated Tests.
+7. Avoid Test Interdependence.
+8. Avoid Active API Calls.
+9. Combine Unit and Integration Testing.
+
+sources: https://brightsec.com/blog/unit-testing-best-practices/
 
 ## Why Flask?
 
@@ -127,3 +170,4 @@ researching this topic:
 Even though, FastAPI is probably faster and uses cutting-edge technology,
 it is still not as established as Flask
 and has less community support, so I'll go with Flask for this project.
+
